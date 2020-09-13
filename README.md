@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+## Run Config
+
+Add the flutterfiregeo api key in androi\app\src\Main\AndroidManifest.xml
 ## Getting Started
 
 This project is a starting point for a Flutter application.

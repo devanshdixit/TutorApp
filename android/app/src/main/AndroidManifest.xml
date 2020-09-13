@@ -9,7 +9,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="tutorApp"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCzAk4TJhptCU27lST0O8DgLjjwgHYlMvQ" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="Replace with your key" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

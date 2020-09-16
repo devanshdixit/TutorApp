@@ -292,6 +292,7 @@ class _ParentIntroState extends State<ParentIntro> {
                               'name': name,
                               'emailid': emailid,
                               'phoneno': phoneno,
+                              'approved': 0
                             }, merge: true).whenComplete(() {
                               if (_formkey.currentState.validate()) {
                                 _pageController.animateTo(
@@ -646,12 +647,15 @@ class _ParentIntroState extends State<ParentIntro> {
                         {
                           'url': url,
                           'age': formattedDate,
+                          'userType': "Parent",
+                          'uid': widget.uid
                         },
                         merge: true,
                       ).whenComplete(() async {
                         SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         await prefs.setBool('seen', true);
+                        await prefs.setString('userType', 'Parent');
                         Navigator.of(context).pushReplacement(
                           new MaterialPageRoute(
                             builder: (context) => ParentPendingRequest(

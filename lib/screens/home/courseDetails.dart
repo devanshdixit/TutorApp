@@ -19,6 +19,7 @@ class CourseDetials extends StatefulWidget {
       curricullum,
       curricullumPdf,
       charge;
+  dynamic transactionDetails;
   List<dynamic> enrolledStudents;
   GeoPoint point;
   CourseDetials(
@@ -33,6 +34,7 @@ class CourseDetials extends StatefulWidget {
       this.point,
       this.subjects,
       this.uid,
+      this.transactionDetails,
       this.curricullum,
       this.curricullumPdf,
       this.userid,
@@ -177,8 +179,9 @@ class _CourseDetialsState extends State<CourseDetials> {
                                 color: Colors.black,
                                 fontFamily: 'Cocogoose')),
                         IconButton(
-                            icon: Icon(Icons.cloud_download), onPressed: ()async{
-                              if(await canLaunch(widget.curricullumPdf)){
+                            icon: Icon(Icons.cloud_download),
+                            onPressed: () async {
+                              if (await canLaunch(widget.curricullumPdf)) {
                                 launch(widget.curricullumPdf);
                               }
                             })
@@ -197,7 +200,10 @@ class _CourseDetialsState extends State<CourseDetials> {
                           Icons.cloud_download,
                           color: Colors.grey,
                         ),
-                        Text(" button",style: TextStyle(color: Colors.grey),)
+                        Text(
+                          " button",
+                          style: TextStyle(color: Colors.grey),
+                        )
                       ],
                     ),
                   )
@@ -322,6 +328,122 @@ class _CourseDetialsState extends State<CourseDetials> {
                   ),
                 );
               },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              child: Row(
+                children: [
+                  Container(
+                    width: 8,
+                    height: 20,
+                    color: Colors.teal,
+                  ),
+                  SizedBox(width: 2),
+                  Text("Transaction Details",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontFamily: 'Cocogoose')),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Transaction Id :",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          widget.transactionDetails['transaction']['id'],
+                          style: TextStyle(fontSize: 18),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Divider(),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Amount :",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          widget.transactionDetails['transaction']['amount'],
+                          style: TextStyle(fontSize: 18),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Divider(),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Transaction Date :",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          DateTime.parse(
+                                  widget.transactionDetails['transaction']
+                                      ['createdAt'])
+                              .toString(),
+                          style: TextStyle(fontSize: 18),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Divider(),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Payment Type :",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          widget.transactionDetails['transaction']
+                                      ['paymentInstrumentType'] ==
+                                  "paypal_account"
+                              ? "Paypal Account"
+                              : "Card",
+                          style: TextStyle(fontSize: 18),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Divider(),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Payer Email :",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          widget.transactionDetails['transaction']['paypal']
+                              ['payerEmail'],
+                          style: TextStyle(fontSize: 18),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             )
           ],
         ),

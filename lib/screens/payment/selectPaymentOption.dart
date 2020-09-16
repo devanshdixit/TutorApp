@@ -135,7 +135,8 @@ class _SelectPaymentOptionState extends State<SelectPaymentOption> {
             'enrolledStudents': widget.teacher.enrolledStudents,
             'charge': widget.teacher.charge,
             'curricullum': widget.teacher.curricullum,
-            'curricullumPdf': widget.teacher.curricullumPdf
+            'curricullumPdf': widget.teacher.curricullumPdf,
+            'transactionDetails': transactionDetails
           });
           Navigator.of(context).pop();
           Navigator.of(context).pop();

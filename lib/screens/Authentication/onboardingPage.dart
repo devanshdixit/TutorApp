@@ -28,20 +28,23 @@ class _OnboardingPageState extends State<OnboardingPage> {
               },
               children: <Widget>[
                 _buildPageContent(
-                    isShowImageOnTop: false,
-                    image: 'assets/teacher1.png',
-                    body: 'Teacher',
-                    color: Color(0xFFFF7252)),
+                  isShowImageOnTop: false,
+                  image: 'assets/teacher2.png',
+                  body: 'Teacher',
+                  color: Colors.white,
+                ),
                 _buildPageContent(
-                    isShowImageOnTop: true,
-                    image: 'assets/student.png',
-                    body: 'Student',
-                    color: Color(0xFFFFA131)),
+                  isShowImageOnTop: true,
+                  image: 'assets/student.png',
+                  body: 'Student',
+                  color: Colors.white,
+                ),
                 _buildPageContent(
-                    isShowImageOnTop: false,
-                    image: 'assets/parents.png',
-                    body: 'Parent',
-                    color: Color(0xFF3C60FF))
+                  isShowImageOnTop: false,
+                  image: 'assets/parents.png',
+                  body: 'Parent',
+                  color: Colors.white,
+                )
               ],
             ),
             Positioned(
@@ -87,43 +90,50 @@ class _OnboardingPageState extends State<OnboardingPage> {
         children: <Widget>[
           Column(
             children: [
-              Center(
-                child: Image.asset(image),
-              ),
-              SizedBox(height: 50),
+              SizedBox(height: 20),
               Text(
                 body,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 24,
-                    height: 1.6,
+                    fontSize: 35,
                     fontWeight: FontWeight.w800,
-                    color: Colors.white),
+                    color: Colors.black),
               ),
-              RaisedButton(
+              SizedBox(height: 20),
+              Center(
+                child: Image.asset(image),
+              ),
+              SizedBox(height: 50),
+              OutlineButton(
                 onPressed: () async {
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   prefs.setString('userType', body);
                   await _authService.signInWithGoogle(body, context);
                 },
-                color: Theme.of(context).accentColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                highlightElevation: 0,
+                borderSide: BorderSide(color: Colors.blue),
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(0.1 * 5, 0, 0.4 * 5, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        'Continue',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                      Image(
+                          image: AssetImage("assets/google_logo.png"),
+                          height: 35.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Sign in with Google',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
                       )
                     ],
                   ),
@@ -143,7 +153,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       height: isCurrentPage ? 18.0 : 10.0,
       width: isCurrentPage ? 18.0 : 10.0,
       decoration: BoxDecoration(
-        color: isCurrentPage ? Colors.white : Colors.white54,
+        color: isCurrentPage ? Colors.black : Colors.grey[600],
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );

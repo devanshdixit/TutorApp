@@ -27,21 +27,36 @@ class DatabaseService {
             'location': mypoint.data,
             'timestamp': DateTime.now()
           })
-        : await collectionReference.document(uid).setData({
-            'userType': userType,
-            'username': username,
-            'name': '',
-            'description': '',
-            'age': '',
-            'emailid': '',
-            'phoneno': '',
-            'subjects': '',
-            'location': mypoint.data,
-            'enrolledStudents': [],
-            'rating': 0,
-            'approved': 0,
-            'timestamp': DateTime.now()
-          });
+        : userType == "Teacher"
+            ? await collectionReference.document(uid).setData({
+                'userType': userType,
+                'username': username,
+                'name': '',
+                'description': '',
+                'age': '',
+                'emailid': '',
+                'phoneno': '',
+                'subjects': '',
+                'location': mypoint.data,
+                'enrolledStudents': [],
+                'rating': 0,
+                'approved': 0,
+                'timestamp': DateTime.now()
+              })
+            : await collectionReference.document(uid).setData({
+                'userType': userType,
+                'username': username,
+                'name': '',
+                'description': '',
+                'age': '',
+                'emailid': '',
+                'phoneno': '',
+                'subjects': '',
+                'location': mypoint.data,
+                'enrolledStudents': [],
+                'approved': 0,
+                'timestamp': DateTime.now()
+              });
   }
 
 //userData from snapshot

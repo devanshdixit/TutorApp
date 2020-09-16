@@ -16,6 +16,7 @@ class _CoursesPurchasedState extends State<CoursesPurchased> {
   Widget build(BuildContext context) {
     print(widget.userid);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Your Courses"),
       ),
@@ -66,6 +67,8 @@ class _CoursesPurchasedState extends State<CoursesPurchased> {
                           ['curricullum'],
                       curricullumPdf: snapshot.data.documents[index]
                           ['curricullumPdf'],
+                      transactionDetails: snapshot.data.documents[index]
+                          ['transactionDetails'],
                     ),
                   ));
                 },
